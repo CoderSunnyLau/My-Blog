@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+	<title>SunnyLau_addFavorite</title>
+</head>
+<body>
+	<a class="addToFvrt" href="#" rel="sidebar" onClick="addFvrt()">addFavorite</a>
+<script type="text/javascript">
+	function addFvrt(){
+		if(document.all){
+			//IE10及以下
+			try{
+				window.external.AddFavorite("https://github.com/CoderSunnyLau/Undefined/issues/1","SunnyLau's GitHub"); 
+			}catch(err){
+				alert("Your brower doesn't support this function, please press “Ctrl+D” to add to favorites, thank you~");
+			}
+		}else if(window.sidebar){
+			//Firefox
+			$('.addToFvrt').attr("href",window.location.href);
+			var thisTitle = document.title;
+			try{
+				window.sidebar.addPanel(thisTitle,window.location.href,"");
+			}catch(err){
+				//此處請勿填寫，兼容高版本的火狐
+			}
+		}else if(navigator.appName == "Netscape"){//大部分瀏覽器以及IE Edge
+			//兼容IE Edge瀏覽器
+			try{
+				window.external.AddFavorite("https://github.com/CoderSunnyLau/Undefined/issues/1","SunnyLau's GitHub"); //edge
+			}catch(err){
+				alert("Your brower doesn't support this function, please press “Ctrl+D” to add to favorites, thank you~");
+			}
+		}else{
+			alert("Your brower doesn't support this function, please press “Ctrl+D” to add to favorites, thank you~");
+		}
+	}
+</script>
+</body>
+</html>
